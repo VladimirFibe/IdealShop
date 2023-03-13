@@ -27,6 +27,13 @@
 		270825FA29BCEAB000BAC4E4 /* RestrictedUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270825F929BCEAB000BAC4E4 /* RestrictedUIHostingController.swift */; };
 		2796C7A129BF0504003ED75E /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7A029BF0504003ED75E /* TabBarCoordinator.swift */; };
 		2796C7A329BF05C6003ED75E /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7A229BF05C6003ED75E /* TabItem.swift */; };
+		2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7A429BF0897003ED75E /* CustomTabBar.swift */; };
+		2796C7A729BF0D69003ED75E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7A629BF0D68003ED75E /* TabBarController.swift */; };
+		2796C7AE29BF0F65003ED75E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7AD29BF0F65003ED75E /* MainCoordinator.swift */; };
+		2796C7B029BF106F003ED75E /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7AF29BF106F003ED75E /* FavoriteCoordinator.swift */; };
+		2796C7B229BF10B2003ED75E /* BasketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B129BF10B2003ED75E /* BasketCoordinator.swift */; };
+		2796C7B429BF10E5003ED75E /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B329BF10E5003ED75E /* ChatCoordinator.swift */; };
+		2796C7B629BF1110003ED75E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +78,13 @@
 		270825F929BCEAB000BAC4E4 /* RestrictedUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictedUIHostingController.swift; sourceTree = "<group>"; };
 		2796C7A029BF0504003ED75E /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		2796C7A229BF05C6003ED75E /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		2796C7A429BF0897003ED75E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		2796C7A629BF0D68003ED75E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2796C7AD29BF0F65003ED75E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		2796C7AF29BF106F003ED75E /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
+		2796C7B129BF10B2003ED75E /* BasketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCoordinator.swift; sourceTree = "<group>"; };
+		2796C7B329BF10E5003ED75E /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +212,11 @@
 		270825EC29BCE6AC00BAC4E4 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2796C7AC29BF0F4D003ED75E /* Profile */,
+				2796C7AB29BF0F47003ED75E /* Chat */,
+				2796C7AA29BF0F3A003ED75E /* Basket */,
+				2796C7A929BF0F2A003ED75E /* Favorite */,
+				2796C7A829BF0F26003ED75E /* Main */,
 				2796C79F29BF04EC003ED75E /* TabBar */,
 				270825ED29BCE6C000BAC4E4 /* Login */,
 			);
@@ -227,9 +246,51 @@
 			isa = PBXGroup;
 			children = (
 				2796C7A029BF0504003ED75E /* TabBarCoordinator.swift */,
+				2796C7A429BF0897003ED75E /* CustomTabBar.swift */,
+				2796C7A629BF0D68003ED75E /* TabBarController.swift */,
 				2796C7A229BF05C6003ED75E /* TabItem.swift */,
 			);
 			name = TabBar;
+			sourceTree = "<group>";
+		};
+		2796C7A829BF0F26003ED75E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7AD29BF0F65003ED75E /* MainCoordinator.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		2796C7A929BF0F2A003ED75E /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7AF29BF106F003ED75E /* FavoriteCoordinator.swift */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
+		2796C7AA29BF0F3A003ED75E /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7B129BF10B2003ED75E /* BasketCoordinator.swift */,
+			);
+			name = Basket;
+			sourceTree = "<group>";
+		};
+		2796C7AB29BF0F47003ED75E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7B329BF10E5003ED75E /* ChatCoordinator.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		2796C7AC29BF0F4D003ED75E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,11 +423,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2796C7B629BF1110003ED75E /* ProfileCoordinator.swift in Sources */,
 				270825F129BCE81C00BAC4E4 /* LoginViewController.swift in Sources */,
 				270825E529BCE37300BAC4E4 /* BaseCoordinator.swift in Sources */,
+				2796C7B429BF10E5003ED75E /* ChatCoordinator.swift in Sources */,
 				270825AD29BCDF0B00BAC4E4 /* AppDelegate.swift in Sources */,
 				270825F829BCEA4500BAC4E4 /* InlineConfigurable.swift in Sources */,
+				2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */,
 				270825AF29BCDF0B00BAC4E4 /* SceneDelegate.swift in Sources */,
+				2796C7A729BF0D69003ED75E /* TabBarController.swift in Sources */,
+				2796C7AE29BF0F65003ED75E /* MainCoordinator.swift in Sources */,
 				270825B729BCDF0B00BAC4E4 /* IdealShop.xcdatamodeld in Sources */,
 				270825E929BCE43A00BAC4E4 /* Router.swift in Sources */,
 				270825E729BCE3CA00BAC4E4 /* BaseViewController.swift in Sources */,
@@ -375,8 +441,10 @@
 				270825FA29BCEAB000BAC4E4 /* RestrictedUIHostingController.swift in Sources */,
 				2796C7A129BF0504003ED75E /* TabBarCoordinator.swift in Sources */,
 				270825F329BCE95400BAC4E4 /* LoginView.swift in Sources */,
+				2796C7B229BF10B2003ED75E /* BasketCoordinator.swift in Sources */,
 				270825F629BCE9E800BAC4E4 /* BridgedView.swift in Sources */,
 				270825EB29BCE5AB00BAC4E4 /* AppCoordinator.swift in Sources */,
+				2796C7B029BF106F003ED75E /* FavoriteCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

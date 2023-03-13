@@ -9,21 +9,21 @@ enum TabItem: Int {
     
     var icon: String {
         switch self {
-        case .main: return "Home"
-        case .favorite: return "Home"
-        case .basket: return "Home"
-        case .chat: return "Home"
-        case .profile: return "Home"
+        case .main: return "home"
+        case .favorite: return "heart"
+        case .basket: return "basket"
+        case .chat: return "chat"
+        case .profile: return "person"
         }
     }
     
     var activeIcon: String {
         switch self {
-        case .main: return "Home"
-        case .favorite: return "Home"
-        case .basket: return "Home"
-        case .chat: return "Home"
-        case .profile: return "Home"
+        case .main: return "home_selected"
+        case .favorite: return "heart_selected"
+        case .basket: return "basket_selected"
+        case .chat: return "chat_selected"
+        case .profile: return "person_selected"
         }
     }
 }
