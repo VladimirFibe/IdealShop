@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  IdealShop
-//
-//  Created by Vladimir on 11.03.2023.
-//
-
 import UIKit
 import CoreData
 
