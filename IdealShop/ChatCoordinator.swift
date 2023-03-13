@@ -14,7 +14,7 @@ final class ChatCoordinator: BaseCoordinator {
 extension ChatCoordinator {
     private func makeChat() -> BaseViewController {
         let controller = ViewController()
-        controller.view.backgroundColor = .systemBackground
+        controller.view.backgroundColor = .idealBackground
         return controller
     }
 }

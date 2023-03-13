@@ -14,7 +14,7 @@ final class FavoriteCoordinator: BaseCoordinator {
 extension FavoriteCoordinator {
     private func makeFavorite() -> BaseViewController {
         let controller = ViewController()
-        controller.view.backgroundColor = .systemBackground
+        controller.view.backgroundColor = .idealBackground
         return controller
     }
 }

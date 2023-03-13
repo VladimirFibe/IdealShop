@@ -34,6 +34,11 @@
 		2796C7B229BF10B2003ED75E /* BasketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B129BF10B2003ED75E /* BasketCoordinator.swift */; };
 		2796C7B429BF10E5003ED75E /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B329BF10E5003ED75E /* ChatCoordinator.swift */; };
 		2796C7B629BF1110003ED75E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */; };
+		2796C7B929BF267A003ED75E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7B829BF267A003ED75E /* UIColor+Extension.swift */; };
+		2796C7BB29BF2901003ED75E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7BA29BF2901003ED75E /* MainController.swift */; };
+		2796C7BD29BF2919003ED75E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7BC29BF2919003ED75E /* MainViewController.swift */; };
+		2796C7BF29BF30AA003ED75E /* MainViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7BE29BF30AA003ED75E /* MainViewController+Layout.swift */; };
+		2796C7C229BF32D0003ED75E /* LatestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796C7C129BF32D0003ED75E /* LatestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +90,11 @@
 		2796C7B129BF10B2003ED75E /* BasketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCoordinator.swift; sourceTree = "<group>"; };
 		2796C7B329BF10E5003ED75E /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
 		2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		2796C7B829BF267A003ED75E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		2796C7BA29BF2901003ED75E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		2796C7BC29BF2919003ED75E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2796C7BE29BF30AA003ED75E /* MainViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Layout.swift"; sourceTree = "<group>"; };
+		2796C7C129BF32D0003ED75E /* LatestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +184,7 @@
 		270825E029BCE25A00BAC4E4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2796C7B729BF2663003ED75E /* Extensions */,
 				270825F429BCE9D000BAC4E4 /* Bridge */,
 				270825E229BCE29B00BAC4E4 /* Base */,
 				270825F729BCEA4500BAC4E4 /* InlineConfigurable.swift */,
@@ -256,6 +267,10 @@
 		2796C7A829BF0F26003ED75E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2796C7C029BF32B5003ED75E /* Views */,
+				2796C7BA29BF2901003ED75E /* MainController.swift */,
+				2796C7BC29BF2919003ED75E /* MainViewController.swift */,
+				2796C7BE29BF30AA003ED75E /* MainViewController+Layout.swift */,
 				2796C7AD29BF0F65003ED75E /* MainCoordinator.swift */,
 			);
 			name = Main;
@@ -291,6 +306,22 @@
 				2796C7B529BF1110003ED75E /* ProfileCoordinator.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		2796C7B729BF2663003ED75E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7B829BF267A003ED75E /* UIColor+Extension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		2796C7C029BF32B5003ED75E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2796C7C129BF32D0003ED75E /* LatestView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,15 +462,20 @@
 				270825F829BCEA4500BAC4E4 /* InlineConfigurable.swift in Sources */,
 				2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */,
 				270825AF29BCDF0B00BAC4E4 /* SceneDelegate.swift in Sources */,
+				2796C7C229BF32D0003ED75E /* LatestView.swift in Sources */,
 				2796C7A729BF0D69003ED75E /* TabBarController.swift in Sources */,
+				2796C7BF29BF30AA003ED75E /* MainViewController+Layout.swift in Sources */,
 				2796C7AE29BF0F65003ED75E /* MainCoordinator.swift in Sources */,
 				270825B729BCDF0B00BAC4E4 /* IdealShop.xcdatamodeld in Sources */,
 				270825E929BCE43A00BAC4E4 /* Router.swift in Sources */,
 				270825E729BCE3CA00BAC4E4 /* BaseViewController.swift in Sources */,
 				2796C7A329BF05C6003ED75E /* TabItem.swift in Sources */,
+				2796C7BD29BF2919003ED75E /* MainViewController.swift in Sources */,
 				270825EF29BCE6E400BAC4E4 /* LoginCoordinator.swift in Sources */,
 				270825FA29BCEAB000BAC4E4 /* RestrictedUIHostingController.swift in Sources */,
+				2796C7BB29BF2901003ED75E /* MainController.swift in Sources */,
 				2796C7A129BF0504003ED75E /* TabBarCoordinator.swift in Sources */,
+				2796C7B929BF267A003ED75E /* UIColor+Extension.swift in Sources */,
 				270825F329BCE95400BAC4E4 /* LoginView.swift in Sources */,
 				2796C7B229BF10B2003ED75E /* BasketCoordinator.swift in Sources */,
 				270825F629BCE9E800BAC4E4 /* BridgedView.swift in Sources */,

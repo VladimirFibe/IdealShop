@@ -14,7 +14,7 @@ final class BasketCoordinator: BaseCoordinator {
 extension BasketCoordinator {
     private func makeBascket() -> BaseViewController {
         let controller = ViewController()
-        controller.view.backgroundColor = .systemBackground
+        controller.view.backgroundColor = .idealBackground
         return controller
     }
 }

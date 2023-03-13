@@ -14,7 +14,7 @@ final class ProfileCoordinator: BaseCoordinator {
 extension ProfileCoordinator {
     private func makeProfile() -> BaseViewController {
         let controller = ViewController()
-        controller.view.backgroundColor = .systemBackground
+        controller.view.backgroundColor = .idealBackground
         return controller
     }
 }

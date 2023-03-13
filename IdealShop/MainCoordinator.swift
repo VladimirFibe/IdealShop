@@ -13,8 +13,6 @@ final class MainCoordinator: BaseCoordinator {
 
 extension MainCoordinator {
     private func makeMain() -> BaseViewController {
-        let controller = ViewController()
-        controller.view.backgroundColor = .systemBackground
-        return controller
+        return MainViewController()
     }
 }
