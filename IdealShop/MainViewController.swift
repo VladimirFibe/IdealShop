@@ -13,6 +13,8 @@ struct Product: Codable, Hashable {
 
 enum MainItem: Hashable {
     case latest(Product)
+    case flash(Product)
+    case brands(Product)
 }
 
 struct MainRow: Hashable {
@@ -23,10 +25,14 @@ struct MainRow: Hashable {
 
 enum MainSection: Int, CaseIterable {
     case latest
+    case flash
+    case brands
 }
 
 struct MainContent {
     let latest: [Product]
+    let flash: [Product]
+    let brands: [Product]
 }
 
 private typealias DataSource = UICollectionViewDiffableDataSource<MainRow, MainItem>
@@ -43,12 +49,17 @@ final class MainViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var headerView: BridgedView = {
+        CategoriesView().bridge()
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.register(LatestCollectionViewCell.self, forCellWithReuseIdentifier: LatestCollectionViewCell.id)
+        collectionView.register(FlashCollectionViewCell.self, forCellWithReuseIdentifier: FlashCollectionViewCell.id)
         collectionView.register(SectionHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeaderView.id)
@@ -61,12 +72,20 @@ final class MainViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .idealBackground
+        addChild(headerView)
+        view.addSubview(headerView.view)
+        headerView.didMove(toParent: self)
+        headerView.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         setupSearchField()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         let margin = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: margin.topAnchor),
+            headerView.view.topAnchor.constraint(equalTo: margin.topAnchor),
+            headerView.view.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
+            headerView.view.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            headerView.view.heightAnchor.constraint(equalToConstant: 60),
+            collectionView.topAnchor.constraint(equalTo: headerView.view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: margin.bottomAnchor)
@@ -79,6 +98,8 @@ final class MainViewController: ViewController {
             let item = self.viewModel.rows[indexPath.section].items[indexPath.row]
             switch item {
             case let .latest(product): return self.configure(LatestCollectionViewCell.self, with: product, for: indexPath)
+            case let .flash(product): return self.configure(FlashCollectionViewCell.self, with: product, for: indexPath)
+            case let .brands(product): return self.configure(LatestCollectionViewCell.self, with: product, for: indexPath)
             }
         }
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
@@ -129,23 +150,71 @@ final class MainViewModel {
                             name: "Samsung S10",
                             price: 1000,
                             discount: nil,
-                            image_url: "https://www.dhresource.com/0x0/f2/albu/g8/M01/9D/19/rBVaV1079WeAEW-AAARn9m_Dmh0487.jpg"),
+                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
                     Product(category: "Games",
                             name: "Sony Playstation 5",
                             price: 700,
                             discount: nil,
-                            image_url: "https://avatars.mds.yandex.net/get-mpic/6251774/img_id4273297770790914968.jpeg/orig"),
+                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
                     Product(category: "Games",
                             name: "Xbox ONE",
                             price: 500,
                             discount: nil,
-                            image_url: "https://www.tradeinn.com/f/13754/137546834/microsoft-xbox-xbox-one-s-1tb-console-additional-controller.jpg"),
+                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
                     Product(category: "Cars",
                             name: "BMW X6M",
                             price: 35000,
                             discount: nil,
-                            image_url: "https://mirbmw.ru/wp-content/uploads/2022/01/manhart-mhx6-700-01.jpg")
-                ].map { .latest($0)})
+                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+                ].map { .latest($0)}),
+        MainRow(index: MainSection.flash.rawValue,
+                title: "Flash Sale",
+                items: [
+                    Product(category: "Phones",
+                            name: "Samsung S10",
+                            price: 1000,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+                    Product(category: "Games",
+                            name: "Sony Playstation 5",
+                            price: 700,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
+                    Product(category: "Games",
+                            name: "Xbox ONE",
+                            price: 500,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
+                    Product(category: "Cars",
+                            name: "BMW X6M",
+                            price: 35000,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+                ].map { .flash($0)}),
+        MainRow(index: MainSection.brands.rawValue,
+                title: "Brands",
+                items: [
+                    Product(category: "Phones",
+                            name: "Samsung S10",
+                            price: 1000,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+                    Product(category: "Games",
+                            name: "Sony Playstation 5",
+                            price: 700,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
+                    Product(category: "Games",
+                            name: "Xbox ONE",
+                            price: 500,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
+                    Product(category: "Cars",
+                            name: "BMW X6M",
+                            price: 35000,
+                            discount: nil,
+                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+                ].map { .brands($0)})
     ]
 }
 

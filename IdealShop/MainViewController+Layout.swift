@@ -7,6 +7,8 @@ extension MainViewController {
             let section = MainSection.allCases[sectionIndex]
             switch section {
             case .latest: return self.createLatestSection()
+            case .flash: return self.createFlashSection()
+            case .brands: return self.createBrandsSection()
             }
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -16,6 +18,32 @@ extension MainViewController {
     }
     
     func createLatestSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(114), heightDimension: .absolute(149))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+        let section = NSCollectionLayoutSection(group: layoutGroup)
+        section.boundarySupplementaryItems = [createSectionHeader()]
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        return section
+    }
+    
+    func createFlashSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(174), heightDimension: .absolute(221))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+        let section = NSCollectionLayoutSection(group: layoutGroup)
+        section.boundarySupplementaryItems = [createSectionHeader()]
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        return section
+    }
+    
+    func createBrandsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(114), heightDimension: .absolute(149))

@@ -32,6 +32,8 @@
 		273972D129C04C2200693BE2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 273972CB29C04C2200693BE2 /* Montserrat-SemiBold.ttf */; };
 		273972D229C04C2200693BE2 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 273972CC29C04C2200693BE2 /* Montserrat-Medium.ttf */; };
 		273972D329C04C2200693BE2 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 273972CD29C04C2200693BE2 /* Montserrat-Light.ttf */; };
+		273EDDF629CD317900504A9D /* FlashCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273EDDF529CD317900504A9D /* FlashCollectionViewCell.swift */; };
+		273EDDF829CD3CBD00504A9D /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273EDDF729CD3CBD00504A9D /* CategoriesView.swift */; };
 		2748E23829CABFD70015B449 /* ProductDetatilVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2748E23729CABFD70015B449 /* ProductDetatilVeiw.swift */; };
 		27671A8529C8496200F94049 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27671A8429C8496200F94049 /* ProductViewController.swift */; };
 		27671A8729C853ED00F94049 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27671A8629C853ED00F94049 /* ProfileView.swift */; };
@@ -105,6 +107,8 @@
 		273972CB29C04C2200693BE2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		273972CC29C04C2200693BE2 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		273972CD29C04C2200693BE2 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		273EDDF529CD317900504A9D /* FlashCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCollectionViewCell.swift; sourceTree = "<group>"; };
+		273EDDF729CD3CBD00504A9D /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		2748E23729CABFD70015B449 /* ProductDetatilVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetatilVeiw.swift; sourceTree = "<group>"; };
 		27671A8429C8496200F94049 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		27671A8629C853ED00F94049 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -395,6 +399,8 @@
 			children = (
 				2796C7C129BF32D0003ED75E /* LatestView.swift */,
 				27D0682429C0102C00D5997B /* LatestCollectionViewCell.swift */,
+				273EDDF529CD317900504A9D /* FlashCollectionViewCell.swift */,
+				273EDDF729CD3CBD00504A9D /* CategoriesView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 				270825AD29BCDF0B00BAC4E4 /* AppDelegate.swift in Sources */,
 				27D0682529C0102C00D5997B /* LatestCollectionViewCell.swift in Sources */,
 				27671A8B29C85E2800F94049 /* ProfileImage.swift in Sources */,
+				273EDDF829CD3CBD00504A9D /* CategoriesView.swift in Sources */,
 				270825F829BCEA4500BAC4E4 /* InlineConfigurable.swift in Sources */,
 				2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */,
 				270825AF29BCDF0B00BAC4E4 /* SceneDelegate.swift in Sources */,
@@ -554,6 +561,7 @@
 				2796C7BF29BF30AA003ED75E /* MainViewController+Layout.swift in Sources */,
 				2796C7AE29BF0F65003ED75E /* MainCoordinator.swift in Sources */,
 				270825B729BCDF0B00BAC4E4 /* IdealShop.xcdatamodeld in Sources */,
+				273EDDF629CD317900504A9D /* FlashCollectionViewCell.swift in Sources */,
 				270825E929BCE43A00BAC4E4 /* Router.swift in Sources */,
 				27671A8929C85BE000F94049 /* ProfileViewModel.swift in Sources */,
 				270825E729BCE3CA00BAC4E4 /* BaseViewController.swift in Sources */,
