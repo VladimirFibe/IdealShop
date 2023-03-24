@@ -10,20 +10,20 @@ final class MainCoordinator: BaseCoordinator {
         router.setRootModule(controller)
     }
     
-    private func runProduct() {
-        let controller = makeProduct()
+    private func runProduct(_ product: Product) {
+        let controller = makeProduct(product)
         router.push(controller, hideBottomBar: false)
     }
 }
 
 extension MainCoordinator {
     private func makeMain() -> BaseViewController {
-        return MainViewController(navigation: MainNavigation(tap: {[weak self] in
-            self?.runProduct()
+        return MainViewController(navigation: MainNavigation(tap: {[weak self] product in
+            self?.runProduct(product)
         }))
     }
     
-    private func makeProduct() -> BaseViewController {
-        return ProductViewController(navigation: ProductNavigation(onExitTap: {}))
+    private func makeProduct(_ product: Product) -> BaseViewController {
+        return ProductViewController(navigation: ProductNavigation(onExitTap: {}), product: product)
     }
 }

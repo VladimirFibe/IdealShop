@@ -6,9 +6,10 @@ struct ProductNavigation {
 
 final class ProductViewController: ViewController {
     private let navigation: ProductNavigation
-    
-    init(navigation: ProductNavigation) {
+    private let product: Product
+    init(navigation: ProductNavigation, product: Product) {
         self.navigation = navigation
+        self.product = product
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -16,13 +17,8 @@ final class ProductViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var rootView: BridgedView = {
-        ProductDetatilVeiw(product: Product(
-            category: "Games",
-            name: "Xbox ONE",
-            price: 500,
-            discount: nil,
-            image_url: "https://www.tradeinn.com/f/13754/137546834/microsoft-xbox-xbox-one-s-1tb-console-additional-controller.jpg")).bridge()
+    private lazy var rootView: BridgedView = { 
+        ProductDetatilVeiw(product: self.product).bridge()
     }()
     
     override func viewDidLoad() {

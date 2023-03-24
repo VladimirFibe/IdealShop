@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainNavigation {
-    let tap: Callback
+    let tap: (Product) -> ()
 }
 struct Product: Codable, Hashable {
     let category: String
@@ -137,7 +137,13 @@ final class MainViewController: ViewController {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigation.tap()
+        if let item = dataSource.itemIdentifier(for: indexPath) {
+            switch item {
+            case .brands(let product): self.navigation.tap(product)
+            case .flash(let product): self.navigation.tap(product)
+            case .latest(let product): self.navigation.tap(product)
+            }
+        }
     }
 }
 
@@ -221,12 +227,16 @@ final class MainViewModel {
 final class SectionHeaderView: UICollectionReusableView {
     static let id = "SectionHeaderView"
     let title = UILabel()
+    let button = UIButton(type: .system)
     override init(frame: CGRect) {
         super.init(frame: frame)
         title.text = "Title"
-        let stackView = UIStackView(arrangedSubviews: [title])
+        button.setTitle("View all", for: .normal)
+        button.tintColor = .lightGray
+        let stackView = UIStackView(arrangedSubviews: [title, button])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
         addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),

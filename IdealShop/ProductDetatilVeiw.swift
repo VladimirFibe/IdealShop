@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProductDetatilVeiw: View {
-    let photos: [String] = [
+    var photos: [String] = [
         "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
         
@@ -10,6 +10,10 @@ struct ProductDetatilVeiw: View {
         "https://images.unsplash.com/photo-1674574124473-e91fdcabaefc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     ]
     let product: Product
+    init(product: Product) {
+        self.product = product
+        photos.insert(product.image_url, at: 0)
+    }
     @State private var selection = 0
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -46,6 +50,8 @@ struct ProductDetatilVeiw: View {
                         } placeholder: {
                             ProgressView()
                                 .frame(width: 328, height: 279)
+                                .background(Color.gray)
+                                .cornerRadius(9)
                         }
                     }
                 }
@@ -63,11 +69,16 @@ struct ProductDetatilVeiw: View {
                                     .scaleEffect(index == selection ? 1.25 : 1)
                                     .shadow(color: index == selection ? Color.black.opacity(0.25) : Color.clear, radius: 4, x: 0, y: 4)
                             } placeholder: {
+                                
                                 ProgressView()
                                     .frame(width: 66, height: 38)
+                                    .background(Color.gray)
+                                    .cornerRadius(9)
                             }
                             .onTapGesture {
-                                selection = index
+                                withAnimation {
+                                    selection = index
+                                }
                             }
                         }
                     }
