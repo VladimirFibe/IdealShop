@@ -12,38 +12,48 @@ struct LoginView: View {
             Text(isLogin ? "Welcome back" : "Sign in")
                 .idealText(26, weight: .semibold)
                 .padding(.bottom, 70)
-            VStack {
-                IdealTextField(placeholder: "first name", text: $firstname)
-                if isLogin {
-                    IdealTextField(placeholder: "Password", text: $password, showEye: true)
-                } else {
+            TabView(selection: $isLogin) {
+                VStack(spacing: 35.0) {
+                    IdealTextField(placeholder: "first name", text: $firstname)
+                    
                     IdealTextField(placeholder: "Last Name", text: $lastname)
                     IdealTextField(placeholder: "Email", text: $email)
-                }
-                Spacer(minLength: 0)
+                }.tag(false)
+                VStack(spacing: 35.0) {
+                    IdealTextField(placeholder: "first name", text: $firstname)
+                    IdealTextField(placeholder: "Password", text: $password, showEye: true)
+                    Spacer()
+                }.tag(true)
             }
-            .frame(height: 157)
-            .padding(.bottom, 25)
-
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .frame(height: 157, alignment: .top)
+            .padding(.bottom, 35)
+            
             Button(action: {action?()}) {
                 PrimaryButton(title: isLogin ? "Login" : "Sign in", image: nil)
             }
-
+            
             HStack {
-                Text("Already have a account?")
+                Text(isLogin ? "Don't have accoutn?" : "Already have a account?")
+                    .foregroundColor(.quantityText)
                 Button {
-                    isLogin.toggle()
+                    withAnimation {
+                        isLogin.toggle()
+                    }
                 } label: {
-                    Text("Log in")
+                    Text(isLogin ? "Sign in" : "Log in")
+                        .foregroundColor(.primaryColor)
                 }
-
+                Spacer()
             }
             .idealText(10, weight: .medium)
-            .padding(.bottom)
-            VStack {
+            .padding(.vertical, 15)
+            Spacer()
+            VStack(spacing: 35) {
                 LogoButton(text: "Sign in with Google", image: "google")
                 LogoButton(text: "Sign in with Apple", image: "apple")
             }
+            .padding(.leading, 50)
             Spacer()
         }
         .padding(.horizontal, 50)

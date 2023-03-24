@@ -79,12 +79,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithTransparentBackground()
-        navigationBarAppearance.backgroundColor = .white
-        navigationBarAppearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+        navigationBarAppearance.backgroundColor = .clear
+//        navigationBarAppearance.titleTextAttributes = [
+//            .foregroundColor: UIColor.black,
 //            .font: UIFont.primary(size: 16, weight: .medium)
-        ]
-        UINavigationBar.appearance().tintColor = .white
+//        ]
+        UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
     }

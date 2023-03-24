@@ -123,7 +123,9 @@ struct ProductDetatilVeiw: View {
                 .padding(.horizontal, 24)
                 Spacer()
             }
+            .padding(.top, 70)
         }
+        .edgesIgnoringSafeArea(.top)
         .overlay(alignment: .bottom) {
             VStack {
                 HStack(alignment: .top) {

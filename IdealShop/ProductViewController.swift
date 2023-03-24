@@ -29,6 +29,7 @@ final class ProductViewController: ViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         setupRootView()
+        setupBackButton()
     }
     
     private func setupRootView() {
@@ -42,5 +43,17 @@ final class ProductViewController: ViewController {
             rootView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             rootView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func setupBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain,
+            target: self,
+            action: #selector(onBackButtonDidTap))
+    }
+    
+    @objc private func onBackButtonDidTap() {
+        navigationController?.popViewController(animated: true)
     }
 }
