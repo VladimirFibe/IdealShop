@@ -58,6 +58,7 @@ extension TabBarCoordinator {
     private func makeProfile() -> (BaseCoordinator, UINavigationController) {
         let navigationController = UINavigationController()
         let coordinator = ProfileCoordinator(router: RouterImpl(rootController: navigationController))
+        coordinator.onFlowDidFinish = self.onFlowDidFinish
         navigationController.tabBarItem = tabItem(for: .profile)
         return (coordinator, navigationController)
     }

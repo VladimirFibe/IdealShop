@@ -7,7 +7,7 @@ final class CustomTabBar: UITabBar {
     }
     required init?(coder: NSCoder) { nil }
     private func setup() {
-        layer.cornerRadius = 24
+        layer.cornerRadius = 30
         layer.masksToBounds = true
         layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
     }

@@ -27,6 +27,10 @@ final class LoginViewController: ViewController {
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
+        setupRootView()
+    }
+    
+    private func setupRootView() {
         addChild(rootView)
         view.addSubview(rootView.view)
         rootView.didMove(toParent: self)

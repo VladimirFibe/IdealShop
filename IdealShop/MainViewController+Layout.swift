@@ -6,7 +6,7 @@ extension MainViewController {
         let layout =  UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             let section = MainSection.allCases[sectionIndex]
             switch section {
-            case .latest: return self.createTrendingSection()
+            case .latest: return self.createLatestSection()
             }
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -15,10 +15,10 @@ extension MainViewController {
         return layout
     }
     
-    func createTrendingSection() -> NSCollectionLayoutSection {
+    func createLatestSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .estimated(254))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(114), heightDimension: .absolute(149))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
         let section = NSCollectionLayoutSection(group: layoutGroup)
         section.boundarySupplementaryItems = [createSectionHeader()]

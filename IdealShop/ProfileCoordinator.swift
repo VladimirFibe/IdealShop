@@ -1,6 +1,8 @@
 import Foundation
 
 final class ProfileCoordinator: BaseCoordinator {
+    var onFlowDidFinish: Callback?
+    
     override func start() {
         runProfile()
     }
@@ -13,8 +15,9 @@ final class ProfileCoordinator: BaseCoordinator {
 
 extension ProfileCoordinator {
     private func makeProfile() -> BaseViewController {
-        let controller = ViewController()
-        controller.view.backgroundColor = .idealBackground
+        let controller = ProfileViewController(navigation: ProfileNavigation(onExitTap: { [weak self] in
+            self?.onFlowDidFinish?()
+        }))
         return controller
     }
 }

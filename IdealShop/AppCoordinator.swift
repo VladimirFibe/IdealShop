@@ -6,11 +6,11 @@ final class AppCoordinator: BaseCoordinator {
     var login = true
     override func start() {
         if login {
-            login = false
             runLogin()
         } else {
             runTabBar()
         }
+        login.toggle()
     }
     
     private func runLogin() {

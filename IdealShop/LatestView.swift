@@ -3,7 +3,18 @@ import SwiftUI
 struct LatestView: View {
     let product: Product
     var body: some View {
-        Text(product.name)
+        GeometryReader { gr in
+            VStack {
+                AsyncImage(url: URL(string: product.image_url)) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                } placeholder: {
+                    ProgressView()
+                }
+            }
+            .frame(width: gr.size.width, height: gr.size.height)
+            .cornerRadius(9)
+        }
     }
 }
 //
