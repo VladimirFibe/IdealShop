@@ -1,44 +1,18 @@
 import SwiftUI
+import Combine
 
 struct MainNavigation {
     let tap: (Product) -> ()
-}
-struct Product: Codable, Hashable {
-    let category: String
-    let name: String
-    let price: Double
-    let discount: Int?
-    let image_url: String
-}
-
-enum MainItem: Hashable {
-    case latest(Product)
-    case flash(Product)
-    case brands(Product)
-}
-
-struct MainRow: Hashable {
-    var index: Int
-    var title: String
-    var items: [MainItem]
-}
-
-enum MainSection: Int, CaseIterable {
-    case latest
-    case flash
-    case brands
-}
-
-struct MainContent {
-    let latest: [Product]
-    let flash: [Product]
-    let brands: [Product]
 }
 
 private typealias DataSource = UICollectionViewDiffableDataSource<MainRow, MainItem>
 private typealias Snapshot = NSDiffableDataSourceSnapshot<MainRow, MainItem>
 
 final class MainViewController: ViewController {
+    private let store = MainStore()
+    private let viewModel = MainViewModel()
+    private var bag = Bag()
+    
     let navigation: MainNavigation
     init(navigation: MainNavigation) {
         self.navigation = navigation
@@ -67,7 +41,16 @@ final class MainViewController: ViewController {
     }()
     
     private var dataSource: DataSource!
-    private var viewModel = MainViewModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,21 +60,21 @@ final class MainViewController: ViewController {
         headerView.didMove(toParent: self)
         headerView.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
-        setupSearchField()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         let margin = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             headerView.view.topAnchor.constraint(equalTo: margin.topAnchor),
             headerView.view.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             headerView.view.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
-            headerView.view.heightAnchor.constraint(equalToConstant: 60),
+            headerView.view.heightAnchor.constraint(equalToConstant: 170),
             collectionView.topAnchor.constraint(equalTo: headerView.view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: margin.bottomAnchor)
         ])
         configureDataSouce()
-        reloadData()
+        setupObservers()
+        store.sendAction(.fetch)
     }
     private func configureDataSouce() {
         dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
@@ -126,12 +109,20 @@ final class MainViewController: ViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    func setupSearchField() {
-        let searchController = UISearchController()
-        searchController.isActive = true
-        searchController.searchBar.placeholder = "What are you looking for?"
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
+    private func setupObservers() {
+        bindLoading(to: view, from: store).store(in: &bag)
+        
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case let .didLoadSections(content):
+                    self.viewModel.mainContent = content
+                    self.reloadData()
+                }
+            }.store(in: &bag)
     }
 }
 
@@ -147,106 +138,105 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
-final class MainViewModel {
-    var rows = [
-        MainRow(index: MainSection.latest.rawValue,
-                title: "Latest",
-                items: [
-                    Product(category: "Phones",
-                            name: "Samsung S10",
-                            price: 1000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
-                    Product(category: "Games",
-                            name: "Sony Playstation 5",
-                            price: 700,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
-                    Product(category: "Games",
-                            name: "Xbox ONE",
-                            price: 500,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
-                    Product(category: "Cars",
-                            name: "BMW X6M",
-                            price: 35000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
-                ].map { .latest($0)}),
-        MainRow(index: MainSection.flash.rawValue,
-                title: "Flash Sale",
-                items: [
-                    Product(category: "Phones",
-                            name: "Samsung S10",
-                            price: 1000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
-                    Product(category: "Games",
-                            name: "Sony Playstation 5",
-                            price: 700,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
-                    Product(category: "Games",
-                            name: "Xbox ONE",
-                            price: 500,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
-                    Product(category: "Cars",
-                            name: "BMW X6M",
-                            price: 35000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
-                ].map { .flash($0)}),
-        MainRow(index: MainSection.brands.rawValue,
-                title: "Brands",
-                items: [
-                    Product(category: "Phones",
-                            name: "Samsung S10",
-                            price: 1000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
-                    Product(category: "Games",
-                            name: "Sony Playstation 5",
-                            price: 700,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"),
-                    Product(category: "Games",
-                            name: "Xbox ONE",
-                            price: 500,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"),
-                    Product(category: "Cars",
-                            name: "BMW X6M",
-                            price: 35000,
-                            discount: nil,
-                            image_url: "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
-                ].map { .brands($0)})
-    ]
+extension UIViewController {
+    func bindLoading(to view: UIView, from loadingObservable: LoadingObservable) -> AnyCancellable {
+        loadingObservable.loadingViewModel
+            .$isLoading
+            .receiveOnMainQueue()
+            .removeDuplicates()
+            .sink { isLoading in
+                view.isLoading(isLoading)
+            }
+    }
+    
+    func bindLoading(to view: UIView, from loadingViewModel: LoadingViewModel) -> AnyCancellable {
+        view.withLoading()
+        
+        return loadingViewModel
+            .$isLoading
+            .receiveOnMainQueue()
+            .removeDuplicates()
+            .sink { isLoading in
+                view.isLoading(isLoading)
+            }
+    }
 }
 
-final class SectionHeaderView: UICollectionReusableView {
-    static let id = "SectionHeaderView"
-    let title = UILabel()
-    let button = UIButton(type: .system)
+extension UIView {
+    @discardableResult
+    func withLoading() -> UIKitLoadingView {
+        let loadingView = UIKitLoadingView()
+        addSubview(loadingView)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        return loadingView
+    }
+    
+    func isLoading(_ isLoading: Bool) {
+        var loadingView = subviews.compactMap { $0 as? UIKitLoadingView }.first
+        if loadingView == nil {
+            loadingView = self.withLoading()
+        }
+        if isLoading {
+            self.bringSubviewToFront(loadingView!)
+            loadingView?.play()
+        } else {
+            loadingView?.stop()
+        }
+    }
+}
+
+final class UIKitLoadingView: UIView {
+    private let artificialDebouncingPeriod: TimeInterval = 0
+    private var inProgress = false
+    
+    private lazy var loadingView = UIActivityIndicatorView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        title.text = "Title"
-        button.setTitle("View all", for: .normal)
-        button.tintColor = .lightGray
-        let stackView = UIStackView(arrangedSubviews: [title, button])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        backgroundColor = .white
+        alpha = 0
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
+    }
+    
+    func play() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1
+        }
+        loadingView.startAnimating()
+    }
+    
+    func stop() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0
+        } completion: { _ in
+            self.loadingView.stopAnimating()
+        }
+    }
+    
+    func configureConstraints() {
+        addSubview(loadingView)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+}
+
+extension Publisher {
+    public func receiveOnMainQueue() -> Publishers.ReceiveOn<Self, DispatchQueue> {
+        receive(on: DispatchQueue.main)
     }
 }

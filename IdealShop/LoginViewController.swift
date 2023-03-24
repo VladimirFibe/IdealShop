@@ -6,9 +6,10 @@ struct LoginNavigation {
 
 final class LoginViewController: ViewController {
     private let navigation: LoginNavigation
-    
+    private let viewModel: LoginViewModel
     init(navigation: LoginNavigation) {
         self.navigation = navigation
+        self.viewModel = LoginViewModel(action: navigation.onLoginTap)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -17,7 +18,7 @@ final class LoginViewController: ViewController {
     }
     
     private lazy var rootView: BridgedView = {
-        LoginView(action: self.navigation.onLoginTap).bridge()
+        LoginView(viewModel: viewModel).bridge()
     }()
     
     override func viewDidLoad() {

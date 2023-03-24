@@ -1,10 +1,3 @@
-//
-//  IdealTextField.swift
-//  IdealShop
-//
-//  Created by Vladimir on 21.03.2023.
-//
-
 import SwiftUI
 
 struct IdealTextField: View {

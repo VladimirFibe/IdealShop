@@ -36,6 +36,13 @@
 		273EDDF829CD3CBD00504A9D /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273EDDF729CD3CBD00504A9D /* CategoriesView.swift */; };
 		273EDDFA29CD4AF200504A9D /* FlashSaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273EDDF929CD4AF200504A9D /* FlashSaleView.swift */; };
 		2748E23829CABFD70015B449 /* ProductDetatilVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2748E23729CABFD70015B449 /* ProductDetatilVeiw.swift */; };
+		274E3D8229CDBF2F0093F9C7 /* MainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8129CDBF2F0093F9C7 /* MainStore.swift */; };
+		274E3D8429CDC01F0093F9C7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8329CDC01F0093F9C7 /* Store.swift */; };
+		274E3D8629CDC2D20093F9C7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8529CDC2D20093F9C7 /* MainViewModel.swift */; };
+		274E3D8829CDC2EF0093F9C7 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8729CDC2EF0093F9C7 /* SectionHeaderView.swift */; };
+		274E3D8A29CDC8E60093F9C7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8929CDC8E60093F9C7 /* APIClient.swift */; };
+		274E3D8C29CDD58E0093F9C7 /* CoreDataMamanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8B29CDD58E0093F9C7 /* CoreDataMamanager.swift */; };
+		274E3D8E29CDD7150093F9C7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E3D8D29CDD7150093F9C7 /* LoginViewModel.swift */; };
 		27671A8529C8496200F94049 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27671A8429C8496200F94049 /* ProductViewController.swift */; };
 		27671A8729C853ED00F94049 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27671A8629C853ED00F94049 /* ProfileView.swift */; };
 		27671A8929C85BE000F94049 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27671A8829C85BE000F94049 /* ProfileViewModel.swift */; };
@@ -112,6 +119,13 @@
 		273EDDF729CD3CBD00504A9D /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		273EDDF929CD4AF200504A9D /* FlashSaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSaleView.swift; sourceTree = "<group>"; };
 		2748E23729CABFD70015B449 /* ProductDetatilVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetatilVeiw.swift; sourceTree = "<group>"; };
+		274E3D8129CDBF2F0093F9C7 /* MainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStore.swift; sourceTree = "<group>"; };
+		274E3D8329CDC01F0093F9C7 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		274E3D8529CDC2D20093F9C7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		274E3D8729CDC2EF0093F9C7 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		274E3D8929CDC8E60093F9C7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		274E3D8B29CDD58E0093F9C7 /* CoreDataMamanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMamanager.swift; sourceTree = "<group>"; };
+		274E3D8D29CDD7150093F9C7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		27671A8429C8496200F94049 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		27671A8629C853ED00F94049 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		27671A8829C85BE000F94049 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +245,9 @@
 				270825E229BCE29B00BAC4E4 /* Base */,
 				270825F729BCEA4500BAC4E4 /* InlineConfigurable.swift */,
 				27D0682629C02EB300D5997B /* SelfConfiguringCell.swift */,
+				274E3D8329CDC01F0093F9C7 /* Store.swift */,
+				274E3D8929CDC8E60093F9C7 /* APIClient.swift */,
+				274E3D8B29CDD58E0093F9C7 /* CoreDataMamanager.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -283,6 +300,7 @@
 				270825EE29BCE6E400BAC4E4 /* LoginCoordinator.swift */,
 				270825F029BCE81C00BAC4E4 /* LoginViewController.swift */,
 				270825F229BCE95400BAC4E4 /* LoginView.swift */,
+				274E3D8D29CDD7150093F9C7 /* LoginViewModel.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -345,8 +363,10 @@
 				27671A8329C8495100F94049 /* Product */,
 				2796C7C029BF32B5003ED75E /* Views */,
 				2796C7BC29BF2919003ED75E /* MainViewController.swift */,
+				274E3D8529CDC2D20093F9C7 /* MainViewModel.swift */,
 				2796C7BE29BF30AA003ED75E /* MainViewController+Layout.swift */,
 				2796C7AD29BF0F65003ED75E /* MainCoordinator.swift */,
+				274E3D8129CDBF2F0093F9C7 /* MainStore.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -404,6 +424,7 @@
 				27D0682429C0102C00D5997B /* LatestCollectionViewCell.swift */,
 				273EDDF529CD317900504A9D /* FlashCollectionViewCell.swift */,
 				273EDDF729CD3CBD00504A9D /* CategoriesView.swift */,
+				274E3D8729CDC2EF0093F9C7 /* SectionHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -554,6 +575,7 @@
 				27671A8B29C85E2800F94049 /* ProfileImage.swift in Sources */,
 				273EDDF829CD3CBD00504A9D /* CategoriesView.swift in Sources */,
 				270825F829BCEA4500BAC4E4 /* InlineConfigurable.swift in Sources */,
+				274E3D8229CDBF2F0093F9C7 /* MainStore.swift in Sources */,
 				2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */,
 				270825AF29BCDF0B00BAC4E4 /* SceneDelegate.swift in Sources */,
 				2796C7C229BF32D0003ED75E /* LatestView.swift in Sources */,
@@ -563,12 +585,16 @@
 				27E5D36529C718F900DCB787 /* ProfileViewController.swift in Sources */,
 				2796C7BF29BF30AA003ED75E /* MainViewController+Layout.swift in Sources */,
 				2796C7AE29BF0F65003ED75E /* MainCoordinator.swift in Sources */,
+				274E3D8E29CDD7150093F9C7 /* LoginViewModel.swift in Sources */,
 				270825B729BCDF0B00BAC4E4 /* IdealShop.xcdatamodeld in Sources */,
+				274E3D8A29CDC8E60093F9C7 /* APIClient.swift in Sources */,
 				273EDDF629CD317900504A9D /* FlashCollectionViewCell.swift in Sources */,
+				274E3D8829CDC2EF0093F9C7 /* SectionHeaderView.swift in Sources */,
 				270825E929BCE43A00BAC4E4 /* Router.swift in Sources */,
 				27671A8929C85BE000F94049 /* ProfileViewModel.swift in Sources */,
 				270825E729BCE3CA00BAC4E4 /* BaseViewController.swift in Sources */,
 				2796C7A329BF05C6003ED75E /* TabItem.swift in Sources */,
+				274E3D8C29CDD58E0093F9C7 /* CoreDataMamanager.swift in Sources */,
 				273EDDFA29CD4AF200504A9D /* FlashSaleView.swift in Sources */,
 				2796C7BD29BF2919003ED75E /* MainViewController.swift in Sources */,
 				270825EF29BCE6E400BAC4E4 /* LoginCoordinator.swift in Sources */,
@@ -580,11 +606,13 @@
 				270825F329BCE95400BAC4E4 /* LoginView.swift in Sources */,
 				2796C7B229BF10B2003ED75E /* BasketCoordinator.swift in Sources */,
 				270825F629BCE9E800BAC4E4 /* BridgedView.swift in Sources */,
+				274E3D8429CDC01F0093F9C7 /* Store.swift in Sources */,
 				27671A8E29C86A9300F94049 /* PrimaryButton.swift in Sources */,
 				279891A929CA0F6B00C1DE81 /* LogoButton.swift in Sources */,
 				270825EB29BCE5AB00BAC4E4 /* AppCoordinator.swift in Sources */,
 				2796C7B029BF106F003ED75E /* FavoriteCoordinator.swift in Sources */,
 				279891A729C9E1FF00C1DE81 /* IdealTextField.swift in Sources */,
+				274E3D8629CDC2D20093F9C7 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

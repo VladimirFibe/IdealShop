@@ -52,7 +52,6 @@ struct EditableCircularProfileImage: View {
                     .foregroundColor(.gray)
                     .idealText(8, weight: .medium)
             }
-                
         }
     }
 }

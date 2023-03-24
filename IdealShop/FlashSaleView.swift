@@ -1,10 +1,3 @@
-//
-//  FlashSaleView.swift
-//  IdealShop
-//
-//  Created by Vladimir on 24.03.2023.
-//
-
 import SwiftUI
 
 struct FlashSaleView: View {

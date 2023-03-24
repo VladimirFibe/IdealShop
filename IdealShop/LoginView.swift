@@ -1,27 +1,21 @@
 import SwiftUI
 
 struct LoginView: View {
-    let action: Callback?
-    @State private var isLogin = false
-    @State private var firstname = ""
-    @State private var lastname = ""
-    @State private var password = ""
-    @State private var email = ""
+    @ObservedObject var viewModel: LoginViewModel
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            Text(isLogin ? "Welcome back" : "Sign in")
+            Text(viewModel.isLogin ? "Welcome back" : "Sign in")
                 .idealText(26, weight: .semibold)
                 .padding(.bottom, 70)
-            TabView(selection: $isLogin) {
+            TabView(selection: $viewModel.isLogin) {
                 VStack(spacing: 35.0) {
-                    IdealTextField(placeholder: "first name", text: $firstname)
-                    
-                    IdealTextField(placeholder: "Last Name", text: $lastname)
-                    IdealTextField(placeholder: "Email", text: $email)
+                    IdealTextField(placeholder: "first name", text: $viewModel.firstname)
+                    IdealTextField(placeholder: "Last Name", text: $viewModel.lastname)
+                    IdealTextField(placeholder: "Email", text: $viewModel.email)
                 }.tag(false)
                 VStack(spacing: 35.0) {
-                    IdealTextField(placeholder: "first name", text: $firstname)
-                    IdealTextField(placeholder: "Password", text: $password, showEye: true)
+                    IdealTextField(placeholder: "first name", text: $viewModel.firstname)
+                    IdealTextField(placeholder: "Password", text: $viewModel.password, showEye: true)
                     Spacer()
                 }.tag(true)
             }
@@ -29,19 +23,19 @@ struct LoginView: View {
             .frame(height: 157, alignment: .top)
             .padding(.bottom, 35)
             
-            Button(action: {action?()}) {
-                PrimaryButton(title: isLogin ? "Login" : "Sign in", image: nil)
+            Button(action: viewModel.login) {
+                    PrimaryButton(title: viewModel.isLogin ? "Login" : "Sign in", image: nil)
             }
             
             HStack {
-                Text(isLogin ? "Don't have accoutn?" : "Already have a account?")
+                Text(viewModel.isLogin ? "Don't have accoutn?" : "Already have a account?")
                     .foregroundColor(.quantityText)
                 Button {
                     withAnimation {
-                        isLogin.toggle()
+                        viewModel.isLogin.toggle()
                     }
                 } label: {
-                    Text(isLogin ? "Sign in" : "Log in")
+                    Text(viewModel.isLogin ? "Sign in" : "Log in")
                         .foregroundColor(.primaryColor)
                 }
                 Spacer()
@@ -58,11 +52,17 @@ struct LoginView: View {
         }
         .padding(.horizontal, 50)
         .padding(.top, 100)
+        .alert(viewModel.message, isPresented: $viewModel.show) {
+            Button("OK", role: .cancel) {
+                viewModel.email = ""
+                viewModel.message = ""
+            }
+        }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(action: {})
+        LoginView(viewModel: LoginViewModel(action: {}))
     }
 }
