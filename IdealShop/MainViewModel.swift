@@ -24,20 +24,31 @@ struct LatestResponse: Codable {
 }
 
 struct FlashResponse: Codable {
-    let flash_sale: [Product]
+    let flashSale: [Product]
+    enum CodingKeys: String, CodingKey {
+        case flashSale = "flash_sale"
+    }
 }
 
 struct Product: Codable, Hashable {
     let name: String
     let description: String?
     let rating: Double?
-    let number_of_reviews: Int?
+    let numberOfReviews: Int?
     let discount: Int?
     let category: String?
     let price: Double
     let colors: [String]?
-    let image_urls: [String]?
-    let image_url: String?
+    let imageUrls: [String]?
+    let imageUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name, description, rating
+        case numberOfReviews = "number_of_reviews"
+        case discount, category, price, colors
+        case imageUrls = "image_urls"
+        case imageUrl = "image_url"
+    }
 }
 
 enum MainItem: Hashable {

@@ -2,11 +2,11 @@ import Foundation
 
 final class ProductViewModel: ObservableObject {
     @Published var product = Product(
-        name: "", description: nil, rating: nil, number_of_reviews: nil, discount: nil, category: nil, price: 0, colors: nil,
-        image_urls: nil,
-        image_url: nil)
+        name: "", description: nil, rating: nil, numberOfReviews: nil, discount: nil, category: nil, price: 0, colors: nil,
+        imageUrls: nil,
+        imageUrl: nil)
     var photos: [String] {
-        product.image_urls ?? []
+        product.imageUrls ?? []
     }
     
     var rating: String {
@@ -22,7 +22,7 @@ final class ProductViewModel: ObservableObject {
     }
     
     var review: String {
-        if let number = product.number_of_reviews {
+        if let number = product.numberOfReviews {
             return number == 1 ? "\(number) review" : "\(number) reviews"
         } else {
             return ""

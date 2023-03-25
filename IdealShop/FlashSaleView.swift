@@ -5,7 +5,7 @@ struct FlashSaleView: View {
     var body: some View {
         GeometryReader { gr in
             ZStack(alignment: .bottom) {
-                AsyncImage(url: URL(string: product.image_url ?? "")) { image in
+                AsyncImage(url: URL(string: product.imageUrl ?? "")) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
                 } placeholder: {

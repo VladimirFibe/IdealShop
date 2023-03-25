@@ -3,9 +3,9 @@ import Foundation
 final class LoginViewModel: ObservableObject {
     let action: Callback?
     @Published var isLogin = false
-    @Published var firstname = ""
+    @Published var firstname = "Vladimir"
     @Published var lastname = ""
-    @Published var password = ""
+    @Published var password = "123456"
     @Published var email = ""
     @Published var show = false
     @Published var message = ""
