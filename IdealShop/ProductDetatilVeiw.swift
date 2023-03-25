@@ -1,18 +1,16 @@
 import SwiftUI
 
 struct ProductDetatilVeiw: View {
-    let product: Product
+    @ObservedObject var viewModel: ProductViewModel
 
     @State private var selection = 0
-    var photos: [String] {
-        product.image_urls ?? []
-    }
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 30) {
                 TabView(selection: $selection) {
-                    ForEach(0..<photos.count, id: \.self) { index in
-                        AsyncImage(url: URL(string: photos[index])) { image in
+                    ForEach(0..<viewModel.photos.count, id: \.self) { index in
+                        AsyncImage(url: URL(string: viewModel.photos[index])) { image in
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 328, height: 279)
@@ -52,8 +50,8 @@ struct ProductDetatilVeiw: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .center, spacing: 15) {
-                        ForEach(0..<photos.count, id: \.self) { index in
-                            AsyncImage(url: URL(string: photos[index])) { image in
+                        ForEach(0..<viewModel.photos.count, id: \.self) { index in
+                            AsyncImage(url: URL(string: viewModel.photos[index])) { image in
                                 image.resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 66, height: 38)
@@ -78,7 +76,7 @@ struct ProductDetatilVeiw: View {
                 }
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 20.0) {
-                        Text(product.name)
+                        Text(viewModel.product.name)
                             .idealText(17, weight: .semibold)
                         Text("Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked")
                             .idealText(9, weight: .regular)

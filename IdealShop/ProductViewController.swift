@@ -5,6 +5,7 @@ struct ProductNavigation {
 }
 
 final class ProductViewController: ViewController {
+    private let viewModel = ProductViewModel()
     private let navigation: ProductNavigation
     private let product: Product
     init(navigation: ProductNavigation, product: Product) {
@@ -17,8 +18,8 @@ final class ProductViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var rootView: BridgedView = { 
-        ProductDetatilVeiw(product: self.product).bridge()
+    private lazy var rootView: BridgedView = {
+        ProductDetatilVeiw(viewModel: self.viewModel).bridge()
     }()
     
     override func viewDidLoad() {

@@ -66,6 +66,8 @@
 		27D0682529C0102C00D5997B /* LatestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0682429C0102C00D5997B /* LatestCollectionViewCell.swift */; };
 		27D0682729C02EB300D5997B /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0682629C02EB300D5997B /* SelfConfiguringCell.swift */; };
 		27E5D36529C718F900DCB787 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E5D36429C718F900DCB787 /* ProfileViewController.swift */; };
+		27F7456229CE769E009236C7 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F7456129CE769E009236C7 /* ProductStore.swift */; };
+		27F7456429CE779C009236C7 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F7456329CE779C009236C7 /* ProductViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		27D0682429C0102C00D5997B /* LatestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestCollectionViewCell.swift; sourceTree = "<group>"; };
 		27D0682629C02EB300D5997B /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
 		27E5D36429C718F900DCB787 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		27F7456129CE769E009236C7 /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
+		27F7456329CE779C009236C7 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,8 @@
 			children = (
 				27671A8429C8496200F94049 /* ProductViewController.swift */,
 				2748E23729CABFD70015B449 /* ProductDetatilVeiw.swift */,
+				27F7456129CE769E009236C7 /* ProductStore.swift */,
+				27F7456329CE779C009236C7 /* ProductViewModel.swift */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				274E3D8229CDBF2F0093F9C7 /* MainStore.swift in Sources */,
 				2796C7A529BF0897003ED75E /* CustomTabBar.swift in Sources */,
 				270825AF29BCDF0B00BAC4E4 /* SceneDelegate.swift in Sources */,
+				27F7456229CE769E009236C7 /* ProductStore.swift in Sources */,
 				2796C7C229BF32D0003ED75E /* LatestView.swift in Sources */,
 				27671A8529C8496200F94049 /* ProductViewController.swift in Sources */,
 				2796C7A729BF0D69003ED75E /* TabBarController.swift in Sources */,
@@ -588,6 +595,7 @@
 				274E3D8E29CDD7150093F9C7 /* LoginViewModel.swift in Sources */,
 				270825B729BCDF0B00BAC4E4 /* IdealShop.xcdatamodeld in Sources */,
 				274E3D8A29CDC8E60093F9C7 /* APIClient.swift in Sources */,
+				27F7456429CE779C009236C7 /* ProductViewModel.swift in Sources */,
 				273EDDF629CD317900504A9D /* FlashCollectionViewCell.swift in Sources */,
 				274E3D8829CDC2EF0093F9C7 /* SectionHeaderView.swift in Sources */,
 				270825E929BCE43A00BAC4E4 /* Router.swift in Sources */,
