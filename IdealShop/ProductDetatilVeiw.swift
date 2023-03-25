@@ -1,20 +1,12 @@
 import SwiftUI
 
 struct ProductDetatilVeiw: View {
-    var photos: [String] = [
-        "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1674574124475-16dd78234342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        
-        "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80",
-        "https://images.unsplash.com/photo-1679493464629-76f6575fe739?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        "https://images.unsplash.com/photo-1674574124473-e91fdcabaefc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-    ]
     let product: Product
-    init(product: Product) {
-        self.product = product
-        photos.insert(product.image_url, at: 0)
-    }
+
     @State private var selection = 0
+    var photos: [String] {
+        product.image_urls ?? []
+    }
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 30) {
@@ -183,15 +175,3 @@ struct ProductDetatilVeiw: View {
         }
     }
 }
-
-struct ProductDetatilVeiw_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetatilVeiw(product: Product(
-            category: "Games",
-            name: "adidas Sportswear Run 60S 3.0 Trainers",
-            price: 500,
-            discount: nil,
-            image_url: "https://images.unsplash.com/photo-1679312995136-4bfc25c1936f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"))
-    }
-}
-

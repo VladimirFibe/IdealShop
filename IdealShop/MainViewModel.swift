@@ -28,11 +28,16 @@ struct FlashResponse: Codable {
 }
 
 struct Product: Codable, Hashable {
-    let category: String
     let name: String
-    let price: Double
+    let description: String?
+    let rating: Double?
+    let number_of_reviews: Int?
     let discount: Int?
-    let image_url: String
+    let category: String?
+    let price: Double
+    let colors: [String]?
+    let image_urls: [String]?
+    let image_url: String?
 }
 
 enum MainItem: Hashable {
