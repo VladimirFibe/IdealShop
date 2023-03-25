@@ -78,14 +78,14 @@ struct ProductDetatilVeiw: View {
                     VStack(alignment: .leading, spacing: 20.0) {
                         Text(viewModel.product.name)
                             .idealText(17, weight: .semibold)
-                        Text("Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked")
+                        Text(viewModel.description)
                             .idealText(9, weight: .regular)
                             .foregroundColor(.quantityText)
                         HStack(spacing: 6.0) {
                             Image("star")
-                            Text("3.9")
+                            Text(viewModel.rating)
                                 .idealText(9, weight: .semibold)
-                            Text("(4000 reviews)")
+                            Text(viewModel.review)
                                 .idealText(9, weight: .regular)
                                 .foregroundColor(.quantityText)
                         }
@@ -94,19 +94,21 @@ struct ProductDetatilVeiw: View {
                             .foregroundColor(.textFieldColor)
                         
                         HStack(spacing: 14.0) {
-                            RoundedRectangle(cornerRadius: 9)
-                                .stroke(Color.quantityText)
-                            .frame(width: 34, height: 26)
-                            RoundedRectangle(cornerRadius: 9)
-                                .fill(Color.quantityText)
-                            .frame(width: 34, height: 26)
-                            RoundedRectangle(cornerRadius: 9)
-                                .fill(Color.black)
-                            .frame(width: 34, height: 26)
+                            ForEach(viewModel.colors, id: \.self) { color in
+                                if color == "#ffffff" {
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .stroke(Color.quantityText)
+                                    .frame(width: 34, height: 26)
+                                } else {
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .fill(Color(hex: color) ?? .red)
+                                        .frame(width: 34, height: 26)
+                                }
+                            }
                         }
                     }
                     Spacer()
-                    Text("$22,50")
+                    Text(viewModel.price)
                         .idealText(13, weight: .semibold)
                         .frame(width: 70)
                 }
@@ -125,7 +127,6 @@ struct ProductDetatilVeiw: View {
                             .foregroundColor(.quantityText)
                         HStack(spacing: 20.0) {
                             Button {
-                                
                             } label: {
                                 Image(systemName: "minus")
                                     .font(.system(size: 11))
@@ -135,7 +136,6 @@ struct ProductDetatilVeiw: View {
                                     .cornerRadius(8)
                             }
                             Button {
-                                
                             } label: {
                                 Image(systemName: "plus")
                                     .font(.system(size: 11))
@@ -145,7 +145,6 @@ struct ProductDetatilVeiw: View {
                                     .cornerRadius(8)
                             }
                         }
-                        
                     }
                     Spacer()
                     HStack(spacing: 30) {

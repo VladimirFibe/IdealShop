@@ -5,7 +5,9 @@ struct ProductNavigation {
 }
 
 final class ProductViewController: ViewController {
+    private let store = ProductStore()
     private let viewModel = ProductViewModel()
+    private var bag = Bag()
     private let navigation: ProductNavigation
     private let product: Product
     init(navigation: ProductNavigation, product: Product) {
@@ -25,6 +27,8 @@ final class ProductViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupObservers()
+        store.sendAction(.fetch)
     }
     
     private func setupViews() {
@@ -56,5 +60,20 @@ final class ProductViewController: ViewController {
     
     @objc private func onBackButtonDidTap() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func setupObservers() {
+        bindLoading(to: view, from: store).store(in: &bag)
+        
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case let .didLoad(product):
+                    self.viewModel.product = product
+                }
+            }.store(in: &bag)
     }
 }
